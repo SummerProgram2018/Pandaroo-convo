@@ -1,7 +1,9 @@
-package com.example.jam.pandaroo_convo;
+package com.example.jam.pandaroo_convo.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.jam.pandaroo_convo.R;
 
 public class MainActivity extends AppCompatActivity {
 
