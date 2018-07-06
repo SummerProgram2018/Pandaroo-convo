@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".InitialSurveyActivity" />
+        <activity
+            android:name=".DiscussionActivity"
+            android:label="@string/title_activity_discussion"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".PostSurveyActivity" />
+        <activity android:name=".FinishFocusActivity"></activity>
     </application>
 
 </manifest>
