@@ -12,6 +12,15 @@ public class FocusGroup {
     private Survey postSurvey;
     private ArrayList<Topic> topics;
 
+    public FocusGroup(String name, String id, int groupSize, int noGroups) {
+        this.name = name;
+        this.id = id;
+        this.groupSize = groupSize;
+        this.noGroups = noGroups;
+        initSurvey = new Survey(this.name, this.id);
+        postSurvey = new Survey(this.name, this.id);
+    }
+
     public String getName() {
         return name;
     }

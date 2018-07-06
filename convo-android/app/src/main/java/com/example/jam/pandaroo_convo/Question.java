@@ -5,6 +5,11 @@ class Question {
     private String question;
     private String responseType;
 
+    public Question(String question, String responseType) {
+        this.question = question;
+        this.responseType = responseType;
+    }
+
     public String getQuestion() {
         return question;
     }

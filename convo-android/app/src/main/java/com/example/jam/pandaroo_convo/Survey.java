@@ -8,6 +8,11 @@ class Survey {
     private String id;
     private ArrayList<Question> questions;
 
+    public Survey(String title, String id) {
+        this.title = title;
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
