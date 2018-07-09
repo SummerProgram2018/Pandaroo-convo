@@ -28,6 +28,7 @@ public class InitialSurveyActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setAdapter(adapter);
+
     }
 
     public void completeSurvey(View view) {
