@@ -82,7 +82,7 @@ public class WelGuiActivity extends AppCompatActivity implements ViewPager.OnPag
             welcome_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(WelGuiActivity.this,MainActivity.class));
+                    startActivity(new Intent(WelGuiActivity.this,LoginActivity.class));
                     finish();
                 }
             });
