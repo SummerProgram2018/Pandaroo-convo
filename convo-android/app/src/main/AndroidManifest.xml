@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".FinishedChatActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_finished_chat"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".PostSurvey"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_post_survey"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
