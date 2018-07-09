@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="fullscreen_content_controls" type="id" />
-    <item name="fullscreen_content" type="id" />
-    <item name="btnFinishedChat" type="id" />
+
 </resources>

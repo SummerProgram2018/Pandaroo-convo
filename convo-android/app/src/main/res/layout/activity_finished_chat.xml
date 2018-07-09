@@ -5,7 +5,6 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
     tools:context=".FinishedChatActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -15,41 +14,62 @@
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
 
-    <EditText
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+    <TextView
         android:id="@+id/txtPrompt"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:inputType="textMultiLine"
         android:text="Complete the following survey post completion survey to get paid for your feedback."
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="228dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        tools:layout_editor_absoluteX="0dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtContribution"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:inputType="textMultiLine"
         android:text="You sent ___ mesages in total and contributed __% of the total messages."
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="127dp" />
+        app:layout_constraintBottom_toTopOf="@+id/txtPrompt"
+        tools:layout_editor_absoluteX="0dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtCongratulations"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:inputType="textMultiLine"
         android:text="CHATROOM Finished!"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="67dp" />
+        app:layout_constraintBottom_toTopOf="@+id/txtContribution"
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar"
+        app:layout_constraintVertical_bias="0.745"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="119dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
         android:text="Post Survey"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="401dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="nextPage"
+        tools:layout_editor_absoluteX="123dp" />
 </android.support.constraint.ConstraintLayout>

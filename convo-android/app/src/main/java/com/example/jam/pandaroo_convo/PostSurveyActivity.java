@@ -14,7 +14,7 @@ public class PostSurveyActivity extends AppCompatActivity {
     }
 
     public void completePostSurvey(View view) {
-        Intent myIntent = new Intent(this, FinishFocusActivity.class);
+        Intent myIntent = new Intent(this, MainActivity.class);
         startActivity(myIntent);
     }
 }

@@ -14,7 +14,7 @@ public class DiscussionActivity extends AppCompatActivity {
     }
 
     public void completeDiscussion(View view) {
-        Intent myIntent = new Intent(this, PostSurveyActivity.class);
+        Intent myIntent = new Intent(this, FinishedChatActivity.class);
         startActivity(myIntent);
     }
 
