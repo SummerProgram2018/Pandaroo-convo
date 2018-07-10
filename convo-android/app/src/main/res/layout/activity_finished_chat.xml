@@ -32,6 +32,7 @@
         android:gravity="center_horizontal"
         android:inputType="textMultiLine"
         android:text="Complete the following survey post completion survey to get paid for your feedback."
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -44,6 +45,7 @@
         android:gravity="center_horizontal"
         android:inputType="textMultiLine"
         android:text="You sent ___ mesages in total and contributed __% of the total messages."
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/txtPrompt"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -57,6 +59,7 @@
         android:gravity="center_horizontal"
         android:inputType="textMultiLine"
         android:text="CHATROOM Finished!"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/txtContribution"
         app:layout_constraintTop_toBottomOf="@+id/main_toolbar"
         app:layout_constraintVertical_bias="0.745"
@@ -65,11 +68,15 @@
     <Button
         android:id="@+id/button"
         android:layout_width="119dp"
-        android:layout_height="41dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:gravity="center_horizontal"
-        android:text="Post Survey"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:onClick="nextPage"
-        tools:layout_editor_absoluteX="123dp" />
+        android:text="Post Survey"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

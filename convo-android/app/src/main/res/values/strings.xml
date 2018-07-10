@@ -6,4 +6,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_post_survey">post_survey</string>
+
+    <string name="title_activity_no_group_found_popup">NoGroupFoundPopup</string>
 </resources>

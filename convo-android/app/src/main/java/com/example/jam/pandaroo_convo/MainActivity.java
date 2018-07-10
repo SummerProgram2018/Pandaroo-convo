@@ -1,11 +1,16 @@
 package com.example.jam.pandaroo_convo;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
+    Dialog popup;
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
@@ -39,6 +44,37 @@ public class MainActivity extends AppCompatActivity {
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
+
+        //declaring a popup for if no group was found
+
+        popup = new Dialog(this);
+
+        //Change to if no group was found
+        if(true){
+            createPopup();
+        }
+    }
+
+    private void createPopup(){
+        TextView txtclose;
+        popup.setContentView(R.layout.activity_no_group_found_popup);
+        txtclose =(TextView) popup.findViewById(R.id.txtclose);
+        txtclose.setText("X");
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popup.dismiss();
+            }
+        });
+
+        Window window = popup.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        wlp.gravity = Gravity.TOP;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(wlp);
+
+        popup.show();
     }
 
     /*
