@@ -10,4 +10,6 @@
     <string name="title_activity_no_group_found_popup">NoGroupFoundPopup</string>
 
     <string name="title_activity_profile">ProfileActivity</string>
+
+    <string name="title_activity_find_group">FindGroupActivity</string>
 </resources>

@@ -23,7 +23,7 @@ public class InitialSurveyActivity extends AppCompatActivity {
     }
 
     public void completeSurvey(View view) {
-        Intent myIntent = new Intent(this, DiscussionActivity.class);
+        Intent myIntent = new Intent(this, FindGroupActivity.class);
         startActivity(myIntent);
     }
 }

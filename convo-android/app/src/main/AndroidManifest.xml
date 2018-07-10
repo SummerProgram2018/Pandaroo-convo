@@ -32,9 +32,12 @@
         />
         <activity
             android:name=".ProfileActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_profile"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FindGroupActivity"
+            android:label="@string/title_activity_find_group"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
