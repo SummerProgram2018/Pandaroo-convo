@@ -19,6 +19,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     Dialog popup;
+    TextView txtToolbar;
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mainToolBar);
 
         Objects.requireNonNull(getSupportActionBar()).setIcon(R.drawable.account_circle);
+
+        txtToolbar =(TextView) mainToolBar.findViewById(R.id.toolbar_box);
+
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createPopup(){
         TextView txtclose;
+        popup.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
         popup.setContentView(R.layout.activity_no_group_found_popup);
         txtclose =(TextView) popup.findViewById(R.id.txtclose);
         txtclose.setText("X");
@@ -66,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 popup.dismiss();
             }
         });
+
+
 
         Window window = popup.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
@@ -112,6 +119,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void joinFocusGroup(View view) {
         Intent myIntent = new Intent(this, InitialSurveyActivity.class);
+        startActivity(myIntent);
+    }
+
+    public void viewProfile(View view) {
+        Intent myIntent = new Intent(this, ProfileActivity.class);
         startActivity(myIntent);
     }
 }

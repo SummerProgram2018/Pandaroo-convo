@@ -8,4 +8,6 @@
     <string name="title_activity_post_survey">post_survey</string>
 
     <string name="title_activity_no_group_found_popup">NoGroupFoundPopup</string>
+
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>

@@ -29,7 +29,12 @@
             android:name=".PostSurveyActivity"
             android:label="PostSurveyActivity"
             android:theme="@style/AppTheme" />
-    />
+        />
+        <activity
+            android:name=".ProfileActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
