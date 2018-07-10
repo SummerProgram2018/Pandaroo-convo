@@ -49,19 +49,22 @@ public class MainActivity extends AppCompatActivity {
         // setting list adapter
         expListView.setAdapter(listAdapter);
 
-        //declaring a popup for if no group was found
+        //creating a popup for if no group was found
 
         popup = new Dialog(this);
-
-        //Change to if no group was found
-        if(true){
+        String s = getIntent().getStringExtra("EXTRA_REDIRECT");
+        if(s!=null){
             createPopup();
         }
     }
 
+    /*
+    Creating a popup for if no group was found
+     */
     private void createPopup(){
+        //Creating the close box
         TextView txtclose;
-        popup.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
+        popup.requestWindowFeature(Window.FEATURE_NO_TITLE);
         popup.setContentView(R.layout.activity_no_group_found_popup);
         txtclose =(TextView) popup.findViewById(R.id.txtclose);
         txtclose.setText("X");
@@ -71,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 popup.dismiss();
             }
         });
-
-
 
         Window window = popup.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();

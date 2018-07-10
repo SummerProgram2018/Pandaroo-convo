@@ -74,6 +74,7 @@ public class FindGroupActivity extends AppCompatActivity {
 
     public void redirect(View view) {
         Intent myIntent = new Intent(this, MainActivity.class);
+        myIntent.putExtra("EXTRA_REDIRECT", "redirect");
         startActivity(myIntent);
     }
 }
