@@ -12,4 +12,8 @@
     <string name="title_activity_profile">ProfileActivity</string>
 
     <string name="title_activity_find_group">FindGroupActivity</string>
+    <string name="initial_survey">Initial Survey</string>
+    <string name="done">Done</string>
+    <string name="entry_hint">Please enter your response.</string>
+    <string name="post_survey_title">Post Discussion Survey</string>
 </resources>
