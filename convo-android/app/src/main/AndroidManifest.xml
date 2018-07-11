@@ -4,12 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/png"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/png"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.WelGuiActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,6 +24,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".PostSurveyActivity" />
         <activity android:name=".FinishFocusActivity"></activity>
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.RegistActivity"></activity>
     </application>
 
 </manifest>

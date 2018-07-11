@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Convo</string>
+    <string name="lg_hint_un">UserName/E-mail/Phone</string>
+    <string name="lg_hint_pwd">Password</string>
+    <string name="action_sign_in_short">Add or Sign Up</string>
+    <string name="action_sign_in">Sign In</string>
+    <string name="error_invalid_password">Password too short!</string>
+    <string name="error_field_required">UserName is invalid！</string>
     <string name="title_activity_discussion">DiscussionActivity</string>
+    <string name="reg_pwd_again">Check Password</string>
+    <string name="initial_survey">Initial Survey</string>
+    <string name="done">Done</string>
+    <string name="entry_hint">Please enter your response.</string>
+    <string name="post_survey_title">Post Discussion Survey</string>
 </resources>
