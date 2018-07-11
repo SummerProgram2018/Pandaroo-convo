@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import com.example.jam.pandaroo_convo.ExpandableListAdapter;
+import com.example.jam.pandaroo_convo.InitialSurveyActivity;
 import com.example.jam.pandaroo_convo.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,10 +51,13 @@ public class MainActivity extends AppCompatActivity {
         // setting list adapter
         expListView.setAdapter(listAdapter);
         listData = new HashMap<>();
+        try {
+            DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("users").child(Integer.toString(userID));
+            user.addListenerForSingleValueEvent(new FocusGroupListChangeListener(listData));
+            user.addValueEventListener(new FocusGroupListChangeListener(listData));
+        } catch(Exception e) {
 
-        DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("users").child(Integer.toString(userID));
-        user.addListenerForSingleValueEvent(new FocusGroupListChangeListener(listData));
-        user.addValueEventListener(new FocusGroupListChangeListener(listData));
+        }
         listAdapter = new ExpandableListAdapter(this, new ArrayList<>(listData.keySet()), listData);
     }
 

@@ -7,6 +7,7 @@
     <string name="error_invalid_password">Password too short!</string>
     <string name="error_field_required">UserName is invalid！</string>
     <string name="title_activity_discussion">DiscussionActivity</string>
+    <string name="reg_pwd_again">Check Password</string>
     <string name="initial_survey">Initial Survey</string>
     <string name="done">Done</string>
     <string name="entry_hint">Please enter your response.</string>
