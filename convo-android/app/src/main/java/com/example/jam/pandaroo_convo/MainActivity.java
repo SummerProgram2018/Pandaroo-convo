@@ -49,10 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
-
-        DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("users").child(Integer.toString(userID));
-        user.addListenerForSingleValueEvent(new FocusGroupListChangeListener(listData));
-        user.addValueEventListener(new FocusGroupListChangeListener(listData));
+        listData = new HashMap<>();
+        try {
+            DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("users").child(Integer.toString(userID));
+            user.addListenerForSingleValueEvent(new FocusGroupListChangeListener(listData));
+            user.addValueEventListener(new FocusGroupListChangeListener(listData));
+        }catch(Exception e){
+        };
         listAdapter = new ExpandableListAdapter(this, new ArrayList<>(listData.keySet()), listData);
 
         // setting list adapter
