@@ -18,7 +18,6 @@ public class User {
     private String name;
     private List<Integer> sessions;
 
-
     public User(int ID) {
         DatabaseReference ref= FirebaseDatabase.getInstance().getReference();
 
@@ -27,17 +26,20 @@ public class User {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 name = dataSnapshot.child("name").getValue().toString();
-                List<Object> sessions = dataSnapshot.child("focus_group").getValue(new Class<List<Object>>);
-                for (int i = 0; i < sessions.size(); i++) {
-                    if(sessions.get(i).toString().equals("True")) {
-                        sess.add(i);
+                List<Object> sess = (List<Object>) dataSnapshot.child("focus_group").getValue();
+                for (int i = 0; i < sess.size(); i++) {
+                    if (sess.get(i).toString().equals("True")) {
+                        sessions.add(i);
                     } else {
-                        System.out.println(String.format("%s is not True", sessions.get(i).toString()));
+                        System.out.println(String.format("%s is not True", sess.get(i).toString()));
                     }
                 }
             }
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
-
-
 }
