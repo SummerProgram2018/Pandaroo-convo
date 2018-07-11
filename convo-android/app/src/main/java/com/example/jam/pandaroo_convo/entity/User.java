@@ -8,6 +8,21 @@ public class User {
     private String birthdate;
     private String phone;
     private String intro;
+    private String rname;
+
+    public User(String username,String password,String rname) {
+        this.username = username;
+        this.password = password;
+        this.rname = rname;
+    }
+
+    public String getRname() {
+        return rname;
+    }
+
+    public void setRname(String rname) {
+        this.rname = rname;
+    }
 
     public String getUsername() {
         return username;
