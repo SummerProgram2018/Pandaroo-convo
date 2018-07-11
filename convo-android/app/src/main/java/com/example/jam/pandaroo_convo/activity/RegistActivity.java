@@ -27,7 +27,7 @@ public class RegistActivity extends AppCompatActivity {
         reg_pwd2 = findViewById(R.id.reg_pwd2);
         reg_rname = findViewById(R.id.reg_rname);
 
-        Button reg_btn =findViewById(R.id.reg_btn);
+        Button reg_btn = findViewById(R.id.reg_btn);
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,17 +97,17 @@ public class RegistActivity extends AppCompatActivity {
 
                 //isSucess= personDAO.insert(person); //添加到数据库
 
-                if(isSucess){  //
+                //if(isSucess){  //
                     Toast.makeText(RegistActivity.this, "Sign Up SUCCESS Please Login", Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent();
                     intent.setClass(RegistActivity.this,LoginActivity.class);//转到登陆
                     RegistActivity.this.startActivity(intent);
                     finish();
                     /*-------------------------------*/
-                }
-                else {
+                //}
+              //  else {
                     Toast.makeText(RegistActivity.this, "Information is Wrong Please Check out", Toast.LENGTH_SHORT).show();
-                }
+               // }
             }
 
 

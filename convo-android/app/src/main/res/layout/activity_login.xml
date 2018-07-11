@@ -88,7 +88,7 @@
                 android:id="@+id/reg_btn"
                 android:layout_width="match_parent"
                 android:layout_height="23dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="16dp"
                 android:textColor="#c4c3c3"
                 android:gravity="right"
                 android:background="#00ffffff"
