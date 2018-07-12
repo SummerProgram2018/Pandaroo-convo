@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
     private static boolean isExit=false;
@@ -70,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
 
         String username = login_un.getText().toString();
         String password = login_pwd.getText().toString();
+        String token = FirebaseInstanceId.getInstance().getToken();
+
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

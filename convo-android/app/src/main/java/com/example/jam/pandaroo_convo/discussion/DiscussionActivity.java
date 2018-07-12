@@ -47,13 +47,14 @@ public class DiscussionActivity extends AppCompatActivity {
             messagesView.setAdapter(messageAdapter);
 
             MemberData data = new MemberData(getRandomName(), getRandomColor());
-            DatabaseReference messages = FirebaseDatabase.getInstance("").getReference().child("FG_sessions").child(Integer.toString(this.focus_group_session)).child("messages");
+            DatabaseReference messages = FirebaseDatabase.getInstance("https://convo-1522b.firebaseio.com").getReference().child("FG_sessions").child(Integer.toString(this.focus_group_session)).child("messages");
 
             messages.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                    Integer user = (Integer) dataSnapshot.child(Long.toString(dataSnapshot.getChildrenCount())).child("user").getValue();
-                    String message = (String) dataSnapshot.child(Long.toString(dataSnapshot.getChildrenCount())).child("message").getValue();
+                    System.out.println(dataSnapshot.getValue().toString());
+                    Integer user = (Integer) dataSnapshot.child(Long.toString(dataSnapshot.getChildrenCount()-1)).child("user").getValue();
+                    String message = (String) dataSnapshot.child(Long.toString(dataSnapshot.getChildrenCount()-1)).child("message").getValue();
 
                     MemberData mdata = new MemberData("User: " + Integer.toString(userID), "#2062ac");
                     System.out.println("making bubble with data: " + message + "||");
