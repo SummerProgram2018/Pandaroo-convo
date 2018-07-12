@@ -8,13 +8,23 @@
     android:focusableInTouchMode="true"
     tools:context="com.example.jam.pandaroo_convo.discussion.DiscussionActivity">
 
-    <ListView
+    <TextView
+        android:id="@+id/question"
         android:layout_width="match_parent"
-        android:id="@+id/messages_view"
-        android:layout_weight="2"
-        android:divider="#fff"
         android:layout_height="wrap_content"
-        />
+        android:layout_weight="2"
+        android:background="@color/cardview_light_background"
+        android:textSize="20dp"
+        android:textColor="@color/cardview_dark_background"
+        android:textAlignment="center"
+        android:text="TextView" />
+
+    <ListView
+        android:id="@+id/messages_view"
+        android:layout_width="match_parent"
+        android:layout_height="464dp"
+        android:layout_weight="2"
+        android:divider="#fff" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -44,4 +54,5 @@
             android:background="@drawable/ic_send_black_24dp"
             android:onClick="sendMessage"/>
     </LinearLayout>
+
 </LinearLayout>

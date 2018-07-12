@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "372994140563-dq7ssuftaf0vi7iuv2vr4661qoc7penm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jam.pandaroo_convo",
+            "certificate_hash": "91ba009f551223af5ec213ebcac7da82dd041cb5"
+          }
+        },
+        {
           "client_id": "372994140563-uslgqti1f29nf2ejefjng7t8b5f0rn15.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372994140563-uslgqti1f29nf2ejefjng7t8b5f0rn15.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
