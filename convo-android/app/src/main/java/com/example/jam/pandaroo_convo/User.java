@@ -16,6 +16,7 @@ import java.util.Map;
 public class User {
     private int ID;
     private String name;
+    private int balance;
     private List<Integer> sessions;
 
     public User(int ID) {
@@ -41,5 +42,31 @@ public class User {
 
             }
         });
+    }
+
+    public int getID(){
+        return ID;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setID(int newID){
+        ID = newID;
+    }
+
+    public void setName(String newName){
+        name = newName;
+    }
+
+    public int getBalance(){
+        return balance;
+    }
+
+    public void incrementBalance(int amount){
+        if(amount>0){
+            balance += amount;
+        }
     }
 }

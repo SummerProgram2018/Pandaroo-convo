@@ -1,4 +1,4 @@
-package com.example.jam.pandaroo_convo;
+package com.example.jam.pandaroo_convo.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -14,6 +14,11 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.example.jam.pandaroo_convo.ExpandableListAdapter;
+import com.example.jam.pandaroo_convo.FocusGroupListChangeListener;
+import com.example.jam.pandaroo_convo.InitialSurveyActivity;
+import com.example.jam.pandaroo_convo.ProfileActivity;
+import com.example.jam.pandaroo_convo.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,13 +31,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import com.example.jam.pandaroo_convo.ExpandableListAdapter;
+import com.example.jam.pandaroo_convo.InitialSurveyActivity;
+import com.example.jam.pandaroo_convo.R;
+
 public class MainActivity extends AppCompatActivity {
     Dialog popup;
     TextView txtToolbar;
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     HashMap<String, List<String>> listData;
-    Integer userID;
+    Integer userID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
+
         //creating a popup for if no group was found
 
         popup = new Dialog(this);
@@ -67,6 +77,16 @@ public class MainActivity extends AppCompatActivity {
         if(s!=null){
             createPopup();
         }
+
+        listData = new HashMap<>();
+        try {
+            DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("users").child(Integer.toString(userID));
+            user.addListenerForSingleValueEvent(new FocusGroupListChangeListener(listData));
+            user.addValueEventListener(new FocusGroupListChangeListener(listData));
+        } catch(Exception e) {
+
+        }
+        listAdapter = new ExpandableListAdapter(this, new ArrayList<>(listData.keySet()), listData);
     }
 
     /*
@@ -105,6 +125,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void viewProfile(View view) {
         Intent myIntent = new Intent(this, ProfileActivity.class);
+
+        // This should come some previous page
+        Intent mIntent = getIntent();
+        int intValue = mIntent.getIntExtra("EXTRA_USER", 0);
+
+        User user = new User(4);
+        myIntent.putExtra("EXTRA_USER", intValue);
+
         startActivity(myIntent);
     }
 }

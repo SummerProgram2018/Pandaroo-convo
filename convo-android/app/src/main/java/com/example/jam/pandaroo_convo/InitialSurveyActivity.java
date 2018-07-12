@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+
 import java.util.Objects;
+import com.example.jam.pandaroo_convo.discussion.DiscussionActivity;
 import java.util.ArrayList;
 
 

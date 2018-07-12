@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.jam.pandaroo_convo.activity.MainActivity;
+
 import static java.lang.Math.round;
 
 /**

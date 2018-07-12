@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.jam.pandaroo_convo.activity.MainActivity;
+
 import java.util.ArrayList;
 
 public class PostSurveyActivity extends AppCompatActivity {
