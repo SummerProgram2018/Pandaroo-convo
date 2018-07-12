@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import static java.lang.Math.toIntExact;
 
 import com.example.jam.pandaroo_convo.PostSurveyActivity;
 import com.example.jam.pandaroo_convo.R;
@@ -21,6 +24,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class DiscussionActivity extends AppCompatActivity {
 
@@ -30,6 +35,8 @@ public class DiscussionActivity extends AppCompatActivity {
         private EditText editText;
         private MessageAdapter messageAdapter;
         private ListView messagesView;
+        private Timer countdown;
+        private int time;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +45,8 @@ public class DiscussionActivity extends AppCompatActivity {
             FirebaseInstanceId.getInstance().getToken();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.discussion_chat);
-
+            TextView question = findViewById(R.id.question);
+            question.setText(getIntent().getExtras().getString("focus_group_question"));
             editText = (EditText) findViewById(R.id.editText);
 
             messageAdapter = new MessageAdapter(this);
@@ -53,12 +61,14 @@ public class DiscussionActivity extends AppCompatActivity {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
                     System.out.println(dataSnapshot.getValue().toString());
-                    Integer user = (Integer) dataSnapshot.child(Long.toString(dataSnapshot.getChildrenCount()-1)).child("user").getValue();
-                    String message = (String) dataSnapshot.child(Long.toString(dataSnapshot.getChildrenCount()-1)).child("message").getValue();
+                    String message = (String) dataSnapshot.child("message").getValue();
+                    Long user = (Long) dataSnapshot.child("user").getValue();
 
-                    MemberData mdata = new MemberData("User: " + Integer.toString(userID), "#2062ac");
-                    System.out.println("making bubble with data: " + message + "||");
-                    final Message messageBubble = new Message(message, mdata, user == userID);
+                    MemberData mdata = new MemberData("User: " + Long.toString(user), "#2062ac");
+                    System.out.println("making bubble with data: " + message + "||" + user.toString());
+
+                    // Hack to check equality of int and long (otherwise we have to upgrade to sdk minimum of 26)
+                    final Message messageBubble = new Message(message, mdata, !((user < userID) | (user > userID)));
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -89,6 +99,18 @@ public class DiscussionActivity extends AppCompatActivity {
 
                 }
             });
+            this.time = 10;
+            this.countdown = new Timer();
+            this.countdown.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    time--;
+                    if (time <=0) {
+                        completeDiscussion(messagesView);
+                        countdown.cancel();
+                    }
+                }
+            }, 0, 1000);
         }
 
         public void sendMessage(View view) {

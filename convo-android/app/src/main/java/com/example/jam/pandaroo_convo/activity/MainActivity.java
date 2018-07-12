@@ -2,6 +2,7 @@ package com.example.jam.pandaroo_convo.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -41,26 +42,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        userID = getIntent().getExtras().getInt("userID");
         Toolbar mainToolBar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolBar);
 
-        Objects.requireNonNull(getSupportActionBar()).setIcon(R.drawable.account_circle);
+        ActionBar actionBar = getSupportActionBar();
+
+        assert actionBar != null;
+//        actionBar.setIcon(R.drawable.ic_account_box_black_24dp);
+        actionBar.setHomeButtonEnabled(true);
+
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
-        prepareListData();
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+//        prepareListData();
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
-//        try {
-//            DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("users").child(Integer.toString(userID));
-//            user.addListenerForSingleValueEvent(new FocusGroupListChangeListener(listData));
-//            user.addValueEventListener(new FocusGroupListChangeListener(listData));
-//        } catch(Exception e) {
-//
-//        }
+        try {
+            DatabaseReference user = FirebaseDatabase.getInstance("https://convo-1522b.firebaseio.com").getReference().child("users").child(Integer.toString(userID));
+            System.out.println(user.getKey());
+            user.addListenerForSingleValueEvent(new FocusGroupListChangeListener(this, expListView));
+//            user.addValueEventListener(new FocusGroupListChangeListener(this, expListView));
+        } catch(Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
     /*
@@ -102,4 +108,5 @@ public class MainActivity extends AppCompatActivity {
         myIntent.putExtra("focus_group", focus_group);
         startActivity(myIntent);
     }
+
 }

@@ -21,6 +21,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
@@ -79,12 +83,28 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent intent=new Intent();
+
                             System.out.println("You done good");
-                            intent.putExtra("user_auth", mAuth.getCurrentUser());
-                            intent.setClass(LoginActivity.this,MainActivity.class);
-                            LoginActivity.this.startActivity(intent);
-                            finish();
+                            Integer userID;
+                            FirebaseDatabase.getInstance("https://convo-1522b.firebaseio.com/").getReference().
+                                    child("auth_id").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    Intent intent=new Intent();
+                                    intent.putExtra("user_auth", mAuth.getCurrentUser());
+                                    intent.putExtra("userID", Integer.parseInt((String) Long.toString((Long) dataSnapshot.getValue())));
+                                    intent.setClass(LoginActivity.this,MainActivity.class);
+                                    LoginActivity.this.startActivity(intent);
+                                    finish();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
                         } else {
                             System.out.println("Not You done good");
 

@@ -42,6 +42,7 @@ public class InitialSurveyActivity extends AppCompatActivity {
         Intent myIntent = new Intent(this, DiscussionActivity.class);
         myIntent.putExtra("User_ID", userID);
         myIntent.putExtra("focus_group", focus_group);
+        myIntent.putExtra("focus_group_question", FocusGroupGenerator.generateFocusGroups().get(0).getInitSurvey().getQuestions().get(0).getQuestion());
         startActivity(myIntent);
     }
 }
