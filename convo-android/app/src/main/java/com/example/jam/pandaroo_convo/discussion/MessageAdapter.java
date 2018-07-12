@@ -77,4 +77,3 @@ public class MessageAdapter extends BaseAdapter {
         public TextView name;
         public TextView messageBody;
     }
-
