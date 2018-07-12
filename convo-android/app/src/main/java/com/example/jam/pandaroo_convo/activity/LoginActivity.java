@@ -3,6 +3,7 @@ package com.example.jam.pandaroo_convo.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jam.pandaroo_convo.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     private static boolean isExit=false;
@@ -63,50 +68,75 @@ public class LoginActivity extends AppCompatActivity {
     };
     private void attemptLogin() {
 
-        // init error message is null
-        login_un.setError(null);
-        login_pwd.setError(null);
-
-        // get input value
         String username = login_un.getText().toString();
         String password = login_pwd.getText().toString();
+        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword(username, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Intent intent=new Intent();
+                            System.out.println("You done good");
+                            intent.putExtra("user_auth", mAuth.getCurrentUser());
+                            intent.setClass(LoginActivity.this,MainActivity.class);
+                            LoginActivity.this.startActivity(intent);
+                            finish();
+                        } else {
+                            System.out.println("Not You done good");
 
-        boolean cancel = false;//check Illegal information
-        View focusView = null;
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+//                            Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
+//                                    Toast.LENGTH_SHORT).show();
+//                            updateUI(null);
+                        }
+                    }
 
-        // check password
-        if ( !TextUtils.isEmpty(password) && !isPasswordValid(password) ) {
-            login_pwd.setError(getString(R.string.error_invalid_password));
-            focusView = login_pwd;
-            cancel = true;
-        }
-
-        //  check Username
-        if ( TextUtils.isEmpty(username) ) {
-            login_un.setError(getString(R.string.error_field_required));
-            focusView = login_un;
-            cancel = true;
-        }
-
-        if ( cancel ) {//Illegal information
-            focusView.requestFocus();//Focus on View。
-        } else {
-            //登陆跳转逻辑
-            //PersonDAO personDAO=new PersonDAO();
-           // boolean sussess=personDAO.chechLogin(email,password);
-           // if(sussess){  //信息合法
-                //APPglobal.NAME=PersonDAO.findNameByUsername(email);//保存用户登录信息到全局变量中
-               // APPglobal.USERNAME=email;
-                Intent intent=new Intent();
-                intent.setClass(LoginActivity.this,MainActivity.class);
-                LoginActivity.this.startActivity(intent);
-                finish();
-           // }
-            //else {
-                //Toast.makeText(LoginActivity.this, "UserName or Password is Wrong!", Toast.LENGTH_SHORT).show();
-           // }
-        }
+        });
     }
+
+//        // init error message is null
+//        login_un.setError(null);
+//        login_pwd.setError(null);
+//
+//        // get input value
+//        String username = login_un.getText().toString();
+//        String password = login_pwd.getText().toString();
+//
+//        boolean cancel = false;//check Illegal information
+//        View focusView = null;
+//
+//        // check password
+//        if ( !TextUtils.isEmpty(password) && !isPasswordValid(password) ) {
+//            login_pwd.setError(getString(R.string.error_invalid_password));
+//            focusView = login_pwd;
+//            cancel = true;
+//        }
+//
+//        //  check Username
+//        if ( TextUtils.isEmpty(username) ) {
+//            login_un.setError(getString(R.string.error_field_required));
+//            focusView = login_un;
+//            cancel = true;
+//        }
+//
+//        if ( cancel ) {//Illegal information
+//            focusView.requestFocus();//Focus on View。
+//        } else {
+//            //登陆跳转逻辑
+//            //PersonDAO personDAO=new PersonDAO();
+//           // boolean sussess=personDAO.chechLogin(email,password);
+//           // if(sussess){  //信息合法
+//                //APPglobal.NAME=PersonDAO.findNameByUsername(email);//保存用户登录信息到全局变量中
+//               // APPglobal.USERNAME=email;
+//                I
+//           // }
+//            //else {
+//                //Toast.makeText(LoginActivity.this, "UserName or Password is Wrong!", Toast.LENGTH_SHORT).show();
+//           // }
+//        }
+//    }
     private boolean isPasswordValid(String password) {
         return password.length() >= 4;
     }

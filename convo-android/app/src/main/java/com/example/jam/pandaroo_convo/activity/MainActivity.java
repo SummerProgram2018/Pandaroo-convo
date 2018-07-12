@@ -32,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
-    HashMap<String, List<String>> listData;
+    HashMap<String, List<String>> listDataChild;
+    ArrayList<String> listDataHeader;
     Integer userID = 1;
+    Integer focus_group = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,53 +49,57 @@ public class MainActivity extends AppCompatActivity {
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
+        prepareListData();
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
-        listData = new HashMap<>();
-        try {
-            DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("users").child(Integer.toString(userID));
-            user.addListenerForSingleValueEvent(new FocusGroupListChangeListener(listData));
-            user.addValueEventListener(new FocusGroupListChangeListener(listData));
-        } catch(Exception e) {
-
-        }
-        listAdapter = new ExpandableListAdapter(this, new ArrayList<>(listData.keySet()), listData);
+//        try {
+//            DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("users").child(Integer.toString(userID));
+//            user.addListenerForSingleValueEvent(new FocusGroupListChangeListener(listData));
+//            user.addValueEventListener(new FocusGroupListChangeListener(listData));
+//        } catch(Exception e) {
+//
+//        }
     }
 
     /*
      * Preparing the list data
      */
     private void prepareListData() {
+        listDataChild = new HashMap<>();
+        listDataHeader = new ArrayList<>();
 
-//        // Adding child data
-//        listDataHeader.add("Smartphone Headphone Jacks");
-//        listDataHeader.add("Cooking Podcasts");
-//        listDataHeader.add("Robot Vacuum Cleaners");
-//
-//        // Adding child data
-//        List<String> smartphone = new ArrayList<String>();
-//        smartphone.add("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo " +
-//                "ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis " +
-//                "dis parturient montes, nascetur ridiculus mus...");
-//
-//        List<String> cooking = new ArrayList<String>();
-//        cooking.add("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo " +
-//                "ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis " +
-//                "dis parturient montes, nascetur ridiculus mus...");
-//
-//        List<String> robot = new ArrayList<String>();
-//        robot.add("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo " +
-//                "ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis " +
-//                "dis parturient montes, nascetur ridiculus mus...");
-//
-//        listDataChild.put(listDataHeader.get(0), smartphone); // Header, Child data
-//        listDataChild.put(listDataHeader.get(1), cooking);
-//        listDataChild.put(listDataHeader.get(2), robot);
+        // Adding child data
+        listDataHeader.add("Smartphone Headphone Jacks");
+        listDataHeader.add("Cooking Podcasts");
+        listDataHeader.add("Robot Vacuum Cleaners");
+
+        // Adding child data
+        List<String> smartphone = new ArrayList<String>();
+        smartphone.add("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo " +
+                "ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis " +
+                "dis parturient montes, nascetur ridiculus mus...");
+
+        List<String> cooking = new ArrayList<String>();
+        cooking.add("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo " +
+                "ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis " +
+                "dis parturient montes, nascetur ridiculus mus...");
+
+        List<String> robot = new ArrayList<String>();
+        robot.add("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo " +
+                "ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis " +
+                "dis parturient montes, nascetur ridiculus mus...");
+
+        listDataChild.put(listDataHeader.get(0), smartphone); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), cooking);
+        listDataChild.put(listDataHeader.get(2), robot);
     }
 
     public void joinFocusGroup(View view) {
         Intent myIntent = new Intent(this, InitialSurveyActivity.class);
+        myIntent.putExtra("User_ID", userID);
+        myIntent.putExtra("focus_group", focus_group);
         startActivity(myIntent);
     }
 }

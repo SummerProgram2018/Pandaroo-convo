@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jam.pandaroo_convo">
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/png"
@@ -19,7 +20,7 @@
         </activity>
         <activity android:name=".InitialSurveyActivity" />
         <activity
-            android:name=".DiscussionActivity"
+            android:name=".discussion.DiscussionActivity"
             android:label="@string/title_activity_discussion"
             android:theme="@style/AppTheme" />
         <activity android:name=".PostSurveyActivity" />
