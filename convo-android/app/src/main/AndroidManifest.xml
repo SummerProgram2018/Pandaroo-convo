@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jam.pandaroo_convo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/png"
@@ -19,13 +22,13 @@
         </activity>
         <activity android:name=".InitialSurveyActivity" />
         <activity
-            android:name=".DiscussionActivity"
+            android:name=".discussion.DiscussionActivity"
             android:label="@string/title_activity_discussion"
             android:theme="@style/AppTheme" />
         <activity android:name=".PostSurveyActivity" />
-        <activity android:name=".FinishFocusActivity"></activity>
+        <activity android:name=".FinishFocusActivity" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.RegistActivity"></activity>
+        <activity android:name=".activity.RegistActivity" />
     </application>
 
 </manifest>
