@@ -66,10 +66,8 @@ public class MessageAdapter extends BaseAdapter {
                 GradientDrawable drawable = (GradientDrawable) holder.avatar.getBackground();
                 drawable.setColor(Color.parseColor(message.getData().getColor()));
             }
-
             return convertView;
         }
-
     }
 
     class MessageViewHolder {
