@@ -1,7 +1,6 @@
 package com.example.jam.pandaroo_convo.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -13,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -62,7 +60,7 @@ public class WelGuiActivity extends AppCompatActivity implements ViewPager.OnPag
 
 
     }
-    int[] images = {R.mipmap.w1, R.mipmap.w2, R.mipmap.w3, R.mipmap.w4};
+    int[] images = {R.drawable.w1, R.drawable.w2, R.drawable.w3, R.drawable.w4};
     List<View> listOfView = new ArrayList<>();
 
     @Override

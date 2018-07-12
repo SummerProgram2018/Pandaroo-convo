@@ -1,6 +1,7 @@
 package com.example.jam.pandaroo_convo.entity;
 
 public class User {
+    private int Uid;
     private String username;
     private String password;
     private String email;
