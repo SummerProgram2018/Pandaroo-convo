@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jam.pandaroo_convo.entity.FocusGroupListData;
@@ -45,12 +47,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         FocusGroupListData data = (FocusGroupListData) getChild(groupPosition, childPosition);
         final String childText =  data.getDescription();
         final String childPrice = Integer.toString(data.getPrice());
+        final Integer FG = data.getFG();
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_item, null);
         }
 
+        Button button = convertView.findViewById(R.id.button);
+        button.setTag(FG);
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.lblListItem);
 

@@ -20,6 +20,7 @@ public class InitialSurveyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         userID = getIntent().getExtras().getInt("user_ID");
         focus_group = getIntent().getExtras().getInt("focus_group");
+        System.out.println("init survey " + userID.toString() + " " + focus_group.toString());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial_survey);
 
