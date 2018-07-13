@@ -62,7 +62,7 @@ public class WelGuiActivity extends AppCompatActivity implements ViewPager.OnPag
 
 
     }
-    int[] images = {R.mipmap.w1, R.mipmap.w2, R.mipmap.w3, R.mipmap.w4};
+    int[] images = {R.drawable.s1, R.drawable.s2, R.drawable.s3, R.drawable.s4};
     List<View> listOfView = new ArrayList<>();
 
     @Override
