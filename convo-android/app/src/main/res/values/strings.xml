@@ -25,4 +25,8 @@
     <string name="done">Done</string>
     <string name="entry_hint">Please enter your response.</string>
     <string name="post_survey_title">Post Discussion Survey</string>
+
+    <string name="title_activity_pay">PayActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
