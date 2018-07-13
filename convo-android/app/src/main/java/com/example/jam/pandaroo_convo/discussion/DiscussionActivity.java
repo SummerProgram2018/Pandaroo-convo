@@ -36,7 +36,7 @@ public class DiscussionActivity extends AppCompatActivity {
         private MessageAdapter messageAdapter;
         private ListView messagesView;
         private Timer countdown;
-        private int time;
+        private int time = 60;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -100,12 +100,10 @@ public class DiscussionActivity extends AppCompatActivity {
 
                 }
             });
-            this.time = 10;
             this.countdown = new Timer();
             this.countdown.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    time--;
                     if (time <=0) {
                         completeDiscussion(messagesView);
                         countdown.cancel();
