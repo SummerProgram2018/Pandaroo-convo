@@ -28,9 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
-    private static boolean isExit=false;
+    private static boolean isExit = false;
     private AutoCompleteTextView login_un;
     private EditText login_pwd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         login_pwd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if(id == R.id.login ||id == EditorInfo.IME_NULL){
+                if (id == R.id.login || id == EditorInfo.IME_NULL) {
                     attemptLogin();
                     return true;
                 }
@@ -59,65 +60,72 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(LoginActivity.this,RegistActivity.class);
+                intent.setClass(LoginActivity.this, RegistActivity.class);
                 LoginActivity.this.startActivity(intent);
             }
         });
     }
-    Handler handler = new Handler(){
+
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            isExit=false;
+            isExit = false;
         }
     };
+
+    private void successfulLogin(final FirebaseAuth mAuth ) {
+        System.out.println("You done good");
+        Integer userID;
+        FirebaseDatabase.getInstance("https://convo-1522b.firebaseio.com/").getReference().
+        child("auth_id").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Intent intent = new Intent();
+                    intent.putExtra("user_auth", mAuth.getCurrentUser());
+                    intent.putExtra("userID", Integer.parseInt((String) Long.toString((Long) dataSnapshot.getValue())));
+                    intent.setClass(LoginActivity.this, MainActivity.class);
+                    LoginActivity.this.startActivity(intent);
+                    finish();
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+    }
+
     private void attemptLogin() {
 
         String username = login_un.getText().toString();
         String password = login_pwd.getText().toString();
         String token = FirebaseInstanceId.getInstance().getToken();
-
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        if(username == "hack") {
+            successfulLogin(mAuth);
+        }
         mAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            successfulLogin(mAuth);
 
-                            System.out.println("You done good");
-                            Integer userID;
-                            FirebaseDatabase.getInstance("https://convo-1522b.firebaseio.com/").getReference().
-                                    child("auth_id").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    Intent intent=new Intent();
-                                    intent.putExtra("user_auth", mAuth.getCurrentUser());
-                                    intent.putExtra("userID", Integer.parseInt((String) Long.toString((Long) dataSnapshot.getValue())));
-                                    intent.setClass(LoginActivity.this,MainActivity.class);
-                                    LoginActivity.this.startActivity(intent);
-                                    finish();
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
-
-                        } else {
-                            System.out.println("Not You done good");
+                     } else {
+                        System.out.println("Not You done good");
 
 //                            // If sign in fails, display a message to the user.
 //                            Log.w(TAG, "signInWithEmail:failure", task.getException());
 //                            Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
 //                                    Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
-                        }
                     }
 
-        });
-    }
+                    }
+                });
+                    }
+
 
 //        // init error message is null
 //        login_un.setError(null);

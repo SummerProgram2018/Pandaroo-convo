@@ -36,12 +36,13 @@ public class DiscussionActivity extends AppCompatActivity {
         private MessageAdapter messageAdapter;
         private ListView messagesView;
         private Timer countdown;
-        private int time;
+        private int time = 60;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
-            userID = getIntent().getExtras().getInt("user_ID");
+            userID = getIntent().getExtras().getInt("User_ID");
             focus_group_session = getIntent().getExtras().getInt("focus_group");
+            System.out.println("discussion " + userID.toString() + " " + focus_group_session.toString());
             FirebaseInstanceId.getInstance().getToken();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.discussion_chat);
@@ -99,12 +100,10 @@ public class DiscussionActivity extends AppCompatActivity {
 
                 }
             });
-            this.time = 10;
             this.countdown = new Timer();
             this.countdown.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    time--;
                     if (time <=0) {
                         completeDiscussion(messagesView);
                         countdown.cancel();
@@ -146,6 +145,7 @@ public class DiscussionActivity extends AppCompatActivity {
 
     public void completeDiscussion(View view) {
         Intent myIntent = new Intent(this, PostSurveyActivity.class);
+        myIntent.putExtra("userID", this.userID);
         startActivity(myIntent);
     }
 }

@@ -32,6 +32,7 @@ public class FocusGroupListChangeListener implements ValueEventListener {
         System.out.println(focus_groups.toString());
         for(int i = 0; i < focus_groups.size(); i++) {
             System.out.println(focus_groups.get(i) == null);
+            final Integer FG = i;
             if (focus_groups.get(i) != null) {
                 dataSnapshot.getRef().getRoot().child(String.format("focus_groups/%d", i)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -39,7 +40,7 @@ public class FocusGroupListChangeListener implements ValueEventListener {
                         String name = dataSnapshot.child("name").getValue().toString();
                         String description = dataSnapshot.child("description").getValue().toString();
                         Integer price = Integer.parseInt((String) dataSnapshot.child("price").getValue());
-                        FocusGroupListData entry = new FocusGroupListData(description, price);
+                        FocusGroupListData entry = new FocusGroupListData(description, price, FG);
                         listing.put(name, entry);
                         listView.setAdapter(new ExpandableListAdapter(mainActivity, new ArrayList<String>(listing.keySet()), listing));
                     }

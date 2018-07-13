@@ -8,13 +8,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.jam.pandaroo_convo.activity.MainActivity;
+
 import java.util.ArrayList;
 
 public class PostSurveyActivity extends AppCompatActivity {
-
+    Integer userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        userID = getIntent().getExtras().getInt("userID");
         super.onCreate(savedInstanceState);
+        System.out.println("post" + userID.toString());
+
         setContentView(R.layout.activity_post_survey);
 
         ArrayList<FocusGroup> FGData = FocusGroupGenerator.generateFocusGroups();
@@ -36,7 +41,8 @@ public class PostSurveyActivity extends AppCompatActivity {
     }
 
     public void completePostSurvey(View view) {
-        Intent myIntent = new Intent(this, FinishFocusActivity.class);
+        Intent myIntent = new Intent(this, MainActivity.class);
+        myIntent.putExtra("userID", this.userID);
         startActivity(myIntent);
     }
 }

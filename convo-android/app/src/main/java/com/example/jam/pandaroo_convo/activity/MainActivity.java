@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ExpandableListView expListView;
     HashMap<String, List<String>> listDataChild;
     ArrayList<String> listDataHeader;
-    Integer userID = 1;
+    Integer userID;
     Integer focus_group = 1;
 
     @Override
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userID = getIntent().getExtras().getInt("userID");
+        System.out.println("main user id: " + userID.toString());
         Toolbar mainToolBar = findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolBar);
 
@@ -104,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void joinFocusGroup(View view) {
         Intent myIntent = new Intent(this, InitialSurveyActivity.class);
-        myIntent.putExtra("User_ID", userID);
-        myIntent.putExtra("focus_group", focus_group);
+        myIntent.putExtra("user_ID", userID);
+        myIntent.putExtra("focus_group", Integer.parseInt(view.getTag().toString()));
         startActivity(myIntent);
     }
 
